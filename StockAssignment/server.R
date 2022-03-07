@@ -1,6 +1,6 @@
 library(shiny)
 
-shinyServer(function(input, output) {
+server <- shinyServer(function(input, output) {
     output$stok <- renderPrint({input$ticker})
     
     output$position <- renderPrint({

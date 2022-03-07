@@ -3,7 +3,7 @@ library(shinyWidgets)
 library(quantmod)
 
 
-shinyUI(fluidPage(
+ui <- shinyUI(fluidPage(
   titlePanel("Exploring Stocks of Top Fortune 500 Companies"),
   img(src = "logo.png", height = 100, width = 300),
   pickerInput(
