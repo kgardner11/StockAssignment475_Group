@@ -10,6 +10,7 @@ shinyUI(fluidPage(
     label = "Choose Stock Symbol(s)", 
     choices = c("WMT", "AMZN", "AAPL", "CVS","UNH","MCK","ABC","GOOGL","XOM")
   ),
+  htmlOutput("mySite"),
   verbatimTextOutput("stok"),
   verbatimTextOutput("position"),
   plotOutput("chart", click = "SD1"),
