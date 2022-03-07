@@ -11,7 +11,6 @@ shinyServer(function(input, output) {
       else if(input$ticker == "AAPL"){
         "Apple is currently the #3 Fortune 500 Company. Click the link above to view this stock on Nasdaq."} 
       else if(input$ticker == "CVS"){
-        "CVS Health is currently the #4 Fortune 500 Company."} 
         "CVS Health is currently the #4 Fortune 500 Company. Click the link above to view this stock on Nasdaq. "} 
       else if(input$ticker == "UNH"){
         "UnitedHealth Group is currently the #5 Fortune 500 Company. Click the link above to view this stock on Nasdaq."} 
@@ -20,7 +19,6 @@ shinyServer(function(input, output) {
       else if(input$ticker == "ABC"){
         "AmerisourceBergen is currently the #8 Fortune 500 Company. Click the link above to view this stock on Nasdaq."} 
       else if(input$ticker == "GOOGL"){
-        "Alphabet is currently the #9 Fortune 500 Company."} 
         "Alphabet is currently the #9 Fortune 500 Company. Click the link above to view this stock on Nasdaq."} 
       else {
         "Exxon Mobil is currently the #10 Fortune 500 Company. Click the link above to view this stock on Nasdaq."}
