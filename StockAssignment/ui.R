@@ -5,6 +5,7 @@ library(quantmod)
 
 shinyUI(fluidPage(
   titlePanel("Exploring Stocks of Top Fortune 500 Companies"),
+  img(src = "logo.png", height = 100, width = 300),
   pickerInput(
     inputId = "ticker",
     label = "Choose Stock Symbol(s)", 
