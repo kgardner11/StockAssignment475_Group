@@ -66,10 +66,16 @@ server <- shinyServer(function(input, output) {
     })
     
     output$chart <- renderPlot({
+    output$plot <- renderPlot({
+      data= getSymbols(input$ticker,
+                       from=input$start,
+                       to=input$end,
+                       auto.assign=FALSE
+                       )
       
       chartSeries(x())
     })
     
-  } )
-  
+  } 
+)
   shinyApp(ui=ui,server=server) 
