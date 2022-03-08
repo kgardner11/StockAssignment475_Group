@@ -14,35 +14,22 @@ server <- shinyServer(function(input, output) {
         "CVS Health is currently the #4 Fortune 500 Company. Click the link above to view this stock on Nasdaq. "} 
       else if(input$ticker == "UNH"){
         "UnitedHealth Group is currently the #5 Fortune 500 Company. Click the link above to view this stock on Nasdaq."} 
+      else if(input$ticker == "BRK-A" | input$ticker == "BRK-B"){
+        "Berkshire Hathaway is currently the #6 Fortune 500 Company. Click the link above to view this stock on Nasdaq."}
       else if(input$ticker == "MCK"){
         "McKesson is currently the #7 Fortune 500 Company. Click the link above to view this stock on Nasdaq."} 
       else if(input$ticker == "ABC"){
         "AmerisourceBergen is currently the #8 Fortune 500 Company. Click the link above to view this stock on Nasdaq."} 
       else if(input$ticker == "GOOGL"){
         "Alphabet is currently the #9 Fortune 500 Company. Click the link above to view this stock on Nasdaq."} 
-      else {
+      else if(input$ticker == "XOM"){
         "Exxon Mobil is currently the #10 Fortune 500 Company. Click the link above to view this stock on Nasdaq."}
+      else {
+        "This stock is not a Top 10 Fortune 500 Company. Click the link above to view this stock on Nasdaq."}
     })
     
     web <- reactive({
-      if(input$ticker == "WMT"){
-        "https://www.nasdaq.com/market-activity/stocks/wmt"} 
-      else if(input$ticker == "AMZN"){
-        "https://www.nasdaq.com/market-activity/stocks/amzn"} 
-      else if(input$ticker == "AAPL"){
-        "https://www.nasdaq.com/market-activity/stocks/aapl"} 
-      else if(input$ticker == "CVS"){
-        "https://www.nasdaq.com/market-activity/stocks/cvs"} 
-      else if(input$ticker == "UNH"){
-        "https://www.nasdaq.com/market-activity/stocks/unh"} 
-      else if(input$ticker == "MCK"){
-        "https://www.nasdaq.com/market-activity/stocks/mck"} 
-      else if(input$ticker == "ABC"){
-        "https://www.nasdaq.com/market-activity/stocks/abc"} 
-      else if(input$ticker == "GOOGL"){
-        "https://www.nasdaq.com/market-activity/stocks/googl"} 
-      else {
-        "https://www.nasdaq.com/market-activity/stocks/xom"}
+      paste("https://www.nasdaq.com/market-activity/stocks/",input$ticker,sep="")
       
     })
     
@@ -51,15 +38,33 @@ server <- shinyServer(function(input, output) {
     }) 
     
     output$plot <- renderPlot({
+      if(input$diff == "FALSE"){
       data= getSymbols(input$ticker,
                        from=input$start,
                        to=input$end,
                        auto.assign=FALSE
                        )
-      
-      chartSeries(data)
-    })
+      chartSeries(data[,4])
+      } else{
+      data= getSymbols(input$ticker,
+                       from=input$start,
+                       to=input$end,
+                       auto.assign=FALSE)
+      plot(diff(log(data[,4])))
+    }
     
-  } 
-)
+  })
+  
+   dataInput <- reactive({
+     getSymbols(input$ticker, src = "yahoo",
+                from = input$start,
+                to=input$end,
+                auto.assign= FALSE)
+   }) 
+   output$view <- DT::renderDataTable({
+     as.data.frame(dataInput())
+   })
+   
+} )
+    
   shinyApp(ui=ui,server=server) 

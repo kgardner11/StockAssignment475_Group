@@ -1,22 +1,36 @@
 library(shiny)
 library(shinyWidgets)
 library(quantmod)
-
+library(plotly)
+library(DT)
+SYMBOLS <- stockSymbols()
 
 ui <- shinyUI(fluidPage(
   titlePanel("Exploring Stocks of Top Fortune 500 Companies"),
-  img(src = "logo.png", height = 100, width = 300),
-  pickerInput(
-    inputId = "ticker",
-    label = "Choose Stock Symbol(s)", 
-    choices = c("WMT", "AMZN", "AAPL", "CVS","UNH","MCK","ABC","GOOGL","XOM")
-  ),
+  img(src = "stockim.png", height = 100, width = 300),
+  selectInput("ticker",h3("Select a Stock Symbol"),
+              choices= names(table(SYMBOLS$Symbol)),
+              selected = 1),
   dateInput("start","Choose a Start Date",value="1900-01-01",startview="month"),
   dateInput("end","Choose an End Date",value="2022-03-07",startview="month"),
+  materialSwitch(
+    inputId = "diff",
+    label = "Difference?",
+    status="primary",
+    right = TRUE
+  ),
   htmlOutput("mySite"),
   verbatimTextOutput("stok"),
   verbatimTextOutput("position"),
   plotOutput("plot"),
+  DT::dataTableOutput("view"),
+  numericInput(
+    "amt",
+    "If I invested this much money (in USD)",
+    10,
+    min=1),
+  dateInput("invest","on this date:",value="2020-03-07",startview="month"),
+  strong(paste("in this stock, I would now have this much money:"))
   )
-)
+) 
 
