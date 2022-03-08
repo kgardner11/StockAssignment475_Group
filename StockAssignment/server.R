@@ -50,22 +50,6 @@ server <- shinyServer(function(input, output) {
       tags$a(href = web(), web())
     }) 
     
-    y <- reactive({getSymbols(input$ticker, src = "yahoo", auto.assign = F)})
-    
-    x <-reactive({
-      if (input$term == "Weekly") {
-        x <- to.weekly(y())
-      }
-      else if (input$term == "Monthly") {
-        x <- to.monthly(y())
-      }
-      else {
-        x <- y()
-      }
-      return(x)
-    })
-    
-    output$chart <- renderPlot({
     output$plot <- renderPlot({
       data= getSymbols(input$ticker,
                        from=input$start,
@@ -73,7 +57,7 @@ server <- shinyServer(function(input, output) {
                        auto.assign=FALSE
                        )
       
-      chartSeries(x())
+      chartSeries(data)
     })
     
   } 
