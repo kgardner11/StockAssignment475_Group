@@ -6,7 +6,7 @@ library(DT)
 SYMBOLS <- stockSymbols()
 
 ui <- shinyUI(fluidPage(
-  titlePanel("Exploring Stocks of Top Fortune 500 Companies"),
+  titlePanel("Exploring Stocks and the What-If"),
   img(src = "stockim.png", height = 100, width = 300),
   selectInput("ticker",h3("Select a Stock Symbol"),
               choices= names(table(SYMBOLS$Symbol)),
@@ -30,7 +30,9 @@ ui <- shinyUI(fluidPage(
     10,
     min=1),
   dateInput("invest","on this date:",value="2020-03-07",startview="month"),
-  strong(paste("in this stock, I would now have this much money:"))
+  strong(paste("in this stock, and sold it")),
+  dateInput("sell","on this date:", value="2022-03-07",startview="month"),
+  verbatimTextOutput("money")
   )
 ) 
 

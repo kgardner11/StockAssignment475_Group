@@ -65,6 +65,23 @@ server <- shinyServer(function(input, output) {
      as.data.frame(dataInput())
    })
    
+  dataInput2 <- reactive({
+    getSymbols(input$ticker, src = "yahoo",
+               from= input$invest,
+               to= input$sell,
+               auto.assign= FALSE)
+  })
+  open <- reactive({
+    as.data.frame(dataInput2()[1,1])
+  })
+  close <- reactive({
+    as.data.frame(dataInput2()[nrow(as.data.frame(dataInput2())),4])
+  })
+  
+  output$money <- renderPrint({
+    paste(((input$amt/open() * close()) - ((input$amt/open()) * open())))
+  })
+  
 } )
     
   shinyApp(ui=ui,server=server) 
