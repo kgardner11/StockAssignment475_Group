@@ -3,6 +3,8 @@ library(shiny)
 server <- shinyServer(function(input, output) {
     output$stok <- renderPrint({input$ticker})
     
+    output$value <- renderPrint({SYMBOLS$Name[which(SYMBOLS$Symbol==input$ticker)]})
+    
     output$position <- renderPrint({
       if(input$ticker == "WMT"){
         "Walmart is currently the #1 Fortune 500 Company. Click the link above to view this stock on Nasdaq."} 
@@ -83,5 +85,4 @@ server <- shinyServer(function(input, output) {
   })
   
 } )
-    
-  shinyApp(ui=ui,server=server) 
+

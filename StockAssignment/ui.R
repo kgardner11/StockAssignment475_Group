@@ -11,6 +11,8 @@ ui <- shinyUI(fluidPage(
   selectInput("ticker",h3("Select a Stock Symbol"),
               choices= names(table(SYMBOLS$Symbol)),
               selected = 1),
+  fluidRow(column(3, verbatimTextOutput("value"))),
+  
   dateInput("start","Choose a Start Date",value="1900-01-01",startview="month"),
   dateInput("end","Choose an End Date",value="2022-03-07",startview="month"),
   materialSwitch(
