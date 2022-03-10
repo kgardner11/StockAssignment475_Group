@@ -7,6 +7,7 @@ library(shinythemes)
 SYMBOLS <- stockSymbols()
 
 ui <- shinyUI(fluidPage(
+  theme= shinytheme("superhero"),
   titlePanel("Exploring Stocks and the What-If"),
   img(src = "stockim.png", height = 100, width = 300),
   selectInput("ticker",h3("Select a Stock Symbol"),
@@ -23,7 +24,6 @@ ui <- shinyUI(fluidPage(
     right = TRUE
   ),
   htmlOutput("mySite"),
-  verbatimTextOutput("stok"),
   verbatimTextOutput("position"),
   plotOutput("plot"),
   DT::dataTableOutput("view"),
@@ -37,6 +37,6 @@ ui <- shinyUI(fluidPage(
   dateInput("sell","on this date:", value="2022-03-07",startview="month"),
   strong(paste("I would have made")),
   verbatimTextOutput("money")
-  )
-) 
+)
+)
 
