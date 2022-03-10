@@ -1,7 +1,7 @@
 library(shiny)
 
 server <- shinyServer(function(input, output) {
-    
+ 
     output$value <- renderPrint({SYMBOLS$Name[which(SYMBOLS$Symbol==input$ticker)]})
     
     output$position <- renderPrint({

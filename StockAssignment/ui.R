@@ -3,6 +3,7 @@ library(shinyWidgets)
 library(quantmod)
 library(plotly)
 library(DT)
+library(shinythemes)
 SYMBOLS <- stockSymbols()
 
 ui <- shinyUI(fluidPage(
@@ -34,6 +35,7 @@ ui <- shinyUI(fluidPage(
   dateInput("invest","on this date:",value="2020-03-07",startview="month"),
   strong(paste("in this stock, and sold it")),
   dateInput("sell","on this date:", value="2022-03-07",startview="month"),
+  strong(paste("I would have made")),
   verbatimTextOutput("money")
   )
 ) 
