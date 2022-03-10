@@ -1,7 +1,8 @@
 library(shiny)
 
 server <- shinyServer(function(input, output) {
-    output$stok <- renderPrint({paste(input$ticker, "is the symbol for", SYMBOLS$Name[SYMBOLS$Symbol==input$ticker])})
+ 
+    output$value <- renderPrint({SYMBOLS$Name[which(SYMBOLS$Symbol==input$ticker)]})
     
     output$position <- renderPrint({
       if(input$ticker == "WMT"){
@@ -83,5 +84,4 @@ server <- shinyServer(function(input, output) {
   })
   
 } )
-    
-  shinyApp(ui=ui,server=server) 
+
