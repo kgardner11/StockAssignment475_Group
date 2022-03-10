@@ -3,6 +3,7 @@ library(shinyWidgets)
 library(quantmod)
 library(plotly)
 library(DT)
+library(shinythemes)
 SYMBOLS <- stockSymbols()
 
 ui <- shinyUI(fluidPage(
