@@ -18,7 +18,7 @@ ui <- dashboardPage(dashboardHeader(title="Exploring Stocks"),
                                
                                menuSubItem("Plotting!",tabName = "ST1"),
                                menuSubItem("Stock Data Table",tabName = "ST2"),
-                               menuSubItem("How Much Money??",tabName = "ST3")))),
+                               menuSubItem("What if...",tabName = "ST3")))),
                     dashboardBody(
                       tabItems(
                         tabItem(tabName = "STO",selectInput("ticker",h3("Select a Stock Symbol"),
@@ -40,9 +40,10 @@ ui <- dashboardPage(dashboardHeader(title="Exploring Stocks"),
                         plotOutput("plot")),
                         tabItem(tabName = "ST2",DT::dataTableOutput("view")),
                         tabItem(tabName = "ST3",
+                                h3("What if..."),
                                 numericInput(
                                   "amt",
-                                  "If I invested this much money (in USD)",
+                                  "I invested this much money (in USD)",
                                   10,
                                   min=1),
                                 dateInput("invest","on this date:",value="2020-03-07",startview="month"),
