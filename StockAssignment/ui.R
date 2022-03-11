@@ -29,15 +29,15 @@ ui <- dashboardPage(dashboardHeader(title="Exploring Stocks"),
                                 verbatimTextOutput("position"),
                                 htmlOutput("mySite")
                                 
-                    ),
+                        ),
                         tabItem(tabName = "ST1",materialSwitch(
                           inputId = "diff",
                           label = "Difference?",
                           status="primary",
                           right = TRUE
                         ),
-                                verbatimTextOutput("stok"),
-                                plotOutput("plot")),
+                        verbatimTextOutput("stok"),
+                        plotOutput("plot")),
                         tabItem(tabName = "ST2",DT::dataTableOutput("view")),
                         tabItem(tabName = "ST3",
                                 numericInput(
@@ -51,5 +51,5 @@ ui <- dashboardPage(dashboardHeader(title="Exploring Stocks"),
                                 strong(paste("I would have made")),
                                 verbatimTextOutput("money")
                         ))))
-  
+
 
